@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'tfvarsFile', defaultValue: 'terraform.tfvars', description: 'Specify the tfvars file name')
+        string(name: 'tfvarsFile', defaultValue: 'dev.tfvars', description: 'Specify the tfvars file name')
     }
 
     stages {
