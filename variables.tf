@@ -1,7 +1,7 @@
 # variables.tf
 variable "instance_type" {
   description = "The EC2 instance type"
-  default     = "t2.micro"
+  default     = "t3.micro"
 }
 
 variable "ami_id" {
