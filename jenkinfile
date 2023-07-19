@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'tfvarsFile', defaultValue: 'terraform.tfvars', description: 'Specify the tfvars file name')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone your Terraform project repository here
+                // For example:
+                // git 'https://github.com/yourusername/terraform-project.git'
+            }
+        }
+        
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                sh "terraform apply -var-file=${params.tfvarsFile} -auto-approve"
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up Terraform after completion
+            sh 'terraform destroy -auto-approve -var-file=${params.tfvarsFile}'
+        }
+    }
+}
